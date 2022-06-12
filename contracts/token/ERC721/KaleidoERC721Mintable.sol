@@ -3,8 +3,8 @@ pragma solidity ^0.6.2;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 
-contract KaleidoERC721Mintable is ERC721, AccessControl {
-    bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
+contract DraconianERC721Mintable is ERC721, AccessControl {
+    bytes32 public constant MINTER_ROLE = ("MINTER_ROLE");
 
     constructor(string memory name, string memory symbol) ERC721(name, symbol) public {
         _setupRole(DEFAULT_ADMIN_ROLE, _msgSender());
@@ -12,7 +12,7 @@ contract KaleidoERC721Mintable is ERC721, AccessControl {
     }
 
     function mint(address to, uint256 tokenId) public {
-        require(hasRole(MINTER_ROLE, _msgSender()), "KaleidoERC721Mintable: must have minter role to mint");
+        require(hasRole(MINTER_ROLE, _msgSender()), "DraconianERC721Mintable: must have minter role to mint");
         _mint(to, tokenId);
     }
 
